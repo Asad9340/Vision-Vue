@@ -5,30 +5,35 @@ import Login from '../Pages/Loagin/Login';
 import Register from '../Pages/Register/Register';
 import Profile from '../components/Profile';
 import Error from '../Pages/Error/Error';
+import PrivateRouter from './PrivateRouter';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
-    errorElement:<Error/>,
+    errorElement: <Error />,
     children: [
       {
         path: '/',
-        element:<Home/>
+        element: <Home />,
       },
       {
         path: '/profile',
-        element:<Profile/>
+        element: (
+          <PrivateRouter>
+            <Profile />
+          </PrivateRouter>
+        ),
       },
       {
         path: '/login',
-        element:<Login/>,
+        element: <Login />,
       },
       {
         path: '/register',
         element: <Register />,
       },
-    ]
+    ],
   },
 ]);
 
