@@ -108,7 +108,7 @@ const Login = () => {
             </Link>
           </p>
         </div>
-        <div className="flex items-center justify-center mb-6">
+        <div className="flex gap-4 items-center justify-center mb-6">
           <Button
             size="sm"
             variant="outlined"
@@ -129,11 +129,11 @@ const Login = () => {
             className="flex items-center gap-3"
           >
             <img
-              src="https://docs.material-tailwind.com/icons/google.svg"
+              src="https://docs.material-tailwind.com/icons/twitter.svg"
               alt="metamask"
               className="h-4 w-4"
             />
-             Google
+             Twitter
           </Button>
           <Button
             size="sm"
@@ -142,11 +142,11 @@ const Login = () => {
             className="flex items-center gap-3"
           >
             <img
-              src="https://docs.material-tailwind.com/icons/google.svg"
+              src="https://docs.material-tailwind.com/icons/facebook.svg"
               alt="metamask"
               className="h-4 w-4"
             />
-             Google
+             Facebook
           </Button>
         </div>
       </form>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BsEmojiSunglasses } from 'react-icons/bs';
 import {
   Navbar,
@@ -8,8 +8,10 @@ import {
   IconButton,
 } from '@material-tailwind/react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../Hooks/AuthProvider';
 
 function NavigationBar() {
+  const { user } = useContext(AuthContext);
   const [openNav, setOpenNav] = React.useState(false);
 
   React.useEffect(() => {
@@ -67,20 +69,28 @@ function NavigationBar() {
             href="#"
             className="mr-4 cursor-pointer py-1.5 font-semibold text-3xl flex items-center"
           >
-            Visi<BsEmojiSunglasses className='text-xl'/>n<span className="text-red-700">V</span>ue
+            Visi
+            <BsEmojiSunglasses className="text-xl" />n
+            <span className="text-red-700">V</span>ue
           </Typography>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-3">
-              <Link to='/register'>
-                <Button
-                  variant="text"
-                  size="md"
-                  className="hidden lg:inline-block"
-                >
-                  <span>Sign Up</span>
+              {user ? (
+                <Button variant="gradient" size="md" className="inline-block">
+                  <span>LogOut</span>
                 </Button>
-              </Link>
+              ) : (
+                <Link to="/register">
+                  <Button
+                    variant="text"
+                    size="md"
+                    className="hidden lg:inline-block"
+                  >
+                    <span>Sign Up</span>
+                  </Button>
+                </Link>
+              )}
               <Link to="/login">
                 <Button
                   variant="gradient"
