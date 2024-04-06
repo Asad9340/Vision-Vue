@@ -11,9 +11,11 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Hooks/AuthProvider';
 
 function NavigationBar() {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [openNav, setOpenNav] = React.useState(false);
-
+  const handleLogOut = () => {
+    logOut();
+  };
   React.useEffect(() => {
     window.addEventListener(
       'resize',
@@ -77,7 +79,12 @@ function NavigationBar() {
             <div className="mr-4 hidden lg:block">{navList}</div>
             <div className="flex items-center gap-x-3">
               {user ? (
-                <Button variant="gradient" size="md" className="inline-block">
+                <Button
+                  onClick={handleLogOut}
+                  variant="gradient"
+                  size="md"
+                  className="inline-block"
+                >
                   <span>LogOut</span>
                 </Button>
               ) : (

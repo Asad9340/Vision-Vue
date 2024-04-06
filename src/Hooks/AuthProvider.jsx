@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 import { auth } from './../Firebase/fitebase.config';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export const AuthContext = createContext(auth);
 
@@ -21,17 +21,25 @@ function AuthProvider({ children }) {
       if (currentUser) {
         setUser(currentUser);
       }
-      else {
-        console.log('user not found');
-      }
     })
   }, []);
+
+  //sign out
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log('sign out success');
+        setUser(null);
+      })
+      .catch((error) => console.log(error));
+  }
 
   const AuthInfo = {
     createUser,
     loginUser,
     user,
     setUser,
+    logOut,
   };
   return (
     <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
