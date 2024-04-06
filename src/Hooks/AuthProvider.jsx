@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react"
 import { auth } from './../Firebase/fitebase.config';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 
 export const AuthContext = createContext(auth);
 
@@ -17,21 +17,25 @@ function AuthProvider({ children }) {
 
   //auth change
   useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
+   const unsubscribe= onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
       }
-    })
+   })
+    return ()=>unsubscribe();
   }, []);
 
   //sign out
   const logOut = () => {
     signOut(auth)
       .then(() => {
-        console.log('sign out success');
         setUser(null);
       })
-      .catch((error) => console.log(error));
+  }
+  //google logIn
+  const googleProvider = new GoogleAuthProvider();
+  const googleLogin = () => {
+    signInWithPopup(auth,googleProvider)
   }
 
   const AuthInfo = {
@@ -40,6 +44,7 @@ function AuthProvider({ children }) {
     user,
     setUser,
     logOut,
+    googleLogin,
   };
   return (
     <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>

@@ -1,15 +1,15 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../Hooks/AuthProvider";
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Hooks/AuthProvider';
 import { toast } from 'react-hot-toast';
-import { Button } from "@material-tailwind/react";
+import { Button } from '@material-tailwind/react';
 
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
-  const handleLoginForm = (e) => {
-        e.preventDefault();
+  const { loginUser, googleLogin } = useContext(AuthContext);
+  const handleLoginForm = e => {
+    e.preventDefault();
     const email = e.target.email.value;
-    const password=e.target.password.value;
+    const password = e.target.password.value;
     console.log(email, password);
     loginUser(email, password)
       .then(result => {
@@ -17,7 +17,12 @@ const Login = () => {
         toast('LogIn Successfully');
       })
       .catch(error => console.log(error));
-  }
+  };
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then(result => console.log(result.user))
+    .catch((error)=>console.log(error))
+  };
   return (
     <div className="mt-16 justify-center items-center flex max-w-xl mx-auto">
       <form
@@ -110,6 +115,7 @@ const Login = () => {
         </div>
         <div className="flex gap-4 items-center justify-center mb-6">
           <Button
+            onClick={handleGoogleLogin}
             size="sm"
             variant="outlined"
             color="blue-gray"
@@ -120,7 +126,7 @@ const Login = () => {
               alt="metamask"
               className="h-4 w-4"
             />
-             Google
+            Google
           </Button>
           <Button
             size="sm"
@@ -133,7 +139,7 @@ const Login = () => {
               alt="metamask"
               className="h-4 w-4"
             />
-             Twitter
+            Twitter
           </Button>
           <Button
             size="sm"
@@ -146,12 +152,12 @@ const Login = () => {
               alt="metamask"
               className="h-4 w-4"
             />
-             Facebook
+            Facebook
           </Button>
         </div>
       </form>
     </div>
   );
-}
+};
 
-export default Login
+export default Login;
