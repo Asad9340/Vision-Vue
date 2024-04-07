@@ -5,10 +5,12 @@ import { Toaster } from 'react-hot-toast';
 function Root() {
   return (
     <div className="max-w-5xl mx-auto">
-      <NavigationBar />
-      <Outlet />
-      <Footer />
-      <Toaster />
+      <div className="mx-4">
+        <NavigationBar />
+        <Outlet />
+        <Footer />
+        <Toaster />
+      </div>
     </div>
   );
 }

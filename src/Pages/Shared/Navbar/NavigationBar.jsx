@@ -157,27 +157,24 @@ function NavigationBar() {
                 onClick={handleLogOut}
                 variant="gradient"
                 size="sm"
-                className="inline-block"
+                className="block lg:hidden w-full"
               >
                 <span>LogOut</span>
               </Button>
             ) : (
-              <Link to="/register">
-                <Button
-                  variant="text"
-                  size="sm"
-                  className="hidden lg:inline-block"
-                >
+              <Link className="w-full" to="/register">
+                <Button fullWidth variant="text" size="sm" className="block lg:hidden">
                   <span>Sign Up</span>
                 </Button>
               </Link>
             )}
             {!user && (
-              <Link to="/login">
+              <Link className="w-full" to="/login">
                 <Button
                   variant="gradient"
                   size="sm"
-                  className="hidden lg:inline-block"
+                  fullWidth
+                  className="block lg:hidden"
                 >
                   <span>Sign in</span>
                 </Button>
