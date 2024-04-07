@@ -71,7 +71,7 @@ function NavigationBar() {
             href="#"
             className="mr-4 cursor-pointer py-1.5 font-semibold text-3xl flex items-center"
           >
-            Visi
+            Visit
             <BsEmojiSunglasses className="text-xl" />n
             <span className="text-red-700">V</span>ue
           </Typography>
@@ -98,15 +98,17 @@ function NavigationBar() {
                   </Button>
                 </Link>
               )}
-              <Link to="/login">
-                <Button
-                  variant="gradient"
-                  size="md"
-                  className="hidden lg:inline-block"
-                >
-                  <span>Sign in</span>
-                </Button>
-              </Link>
+              {!user && (
+                <Link to="/login">
+                  <Button
+                    variant="gradient"
+                    size="md"
+                    className="hidden lg:inline-block"
+                  >
+                    <span>Sign in</span>
+                  </Button>
+                </Link>
+              )}
             </div>
             <IconButton
               variant="text"
