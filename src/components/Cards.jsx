@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
-
+import { Link } from 'react-router-dom';
 function Cards({ item }) {
-  const { image, name, price, description } = item;
+  const { id,image, name, price, description } = item;
   return (
-    <Link to='/description'>
+    <Link to={`/glasses/${id}`}>
       <div className="border rounded-lg ">
         <img
           className="w-full bg-gray-100 rounded-lg mb-6"

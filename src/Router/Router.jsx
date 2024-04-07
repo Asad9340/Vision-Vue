@@ -6,6 +6,7 @@ import Register from '../Pages/Register/Register';
 import Profile from '../components/Profile';
 import Error from '../Pages/Error/Error';
 import PrivateRouter from './PrivateRouter';
+import GlassesDetails from '../components/GlassesDetails';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/glasses/:id',
+        element: <GlassesDetails />,
+        loader:()=>fetch('/glasses.json'),
       },
       {
         path: '/profile',
