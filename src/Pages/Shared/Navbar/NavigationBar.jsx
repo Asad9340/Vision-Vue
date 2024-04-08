@@ -81,7 +81,7 @@ function NavigationBar() {
               {user ? (
                 <Button
                   onClick={handleLogOut}
-                  variant="gradient"
+                  variant="filled"
                   size="md"
                   className="inline-block"
                 >
@@ -90,7 +90,7 @@ function NavigationBar() {
               ) : (
                 <Link to="/register">
                   <Button
-                    variant="text"
+                    variant="filled"
                     size="md"
                     className="hidden lg:inline-block"
                   >
@@ -101,7 +101,7 @@ function NavigationBar() {
               {!user && (
                 <Link to="/login">
                   <Button
-                    variant="gradient"
+                    variant="filled"
                     size="md"
                     className="hidden lg:inline-block"
                   >
@@ -155,7 +155,7 @@ function NavigationBar() {
             {user ? (
               <Button
                 onClick={handleLogOut}
-                variant="gradient"
+                variant="filled"
                 size="sm"
                 className="block lg:hidden w-full"
               >
@@ -163,7 +163,12 @@ function NavigationBar() {
               </Button>
             ) : (
               <Link className="w-full" to="/register">
-                <Button fullWidth variant="text" size="sm" className="block lg:hidden">
+                <Button
+                  fullWidth
+                  variant="filled"
+                  size="sm"
+                  className="block lg:hidden"
+                >
                   <span>Sign Up</span>
                 </Button>
               </Link>
@@ -171,7 +176,7 @@ function NavigationBar() {
             {!user && (
               <Link className="w-full" to="/login">
                 <Button
-                  variant="gradient"
+                  variant="filled"
                   size="sm"
                   fullWidth
                   className="block lg:hidden"
